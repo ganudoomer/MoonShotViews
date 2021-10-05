@@ -26,6 +26,7 @@ struct MissonView: View {
                 VStack{
                     Image(self.mission.image).resizable().scaledToFit().frame(maxWidth:geometry.size.width * 0.7)
                         .padding(.top)
+                    Text("Launch Date:-\(mission.formattedLaunchDate)")
                     Text(self.mission.description)
                         .padding().layoutPriority(1)
                     
@@ -67,6 +68,6 @@ struct MissonView_Previews: PreviewProvider {
     static let missions :  [Mission] = Bundle.main.decode("missions.json")
     static let astronauts: [Astronaut] = Bundle.main.decode("astronauts.json")
     static var previews: some View {
-        MissonView(mission: missions[0],astronauts: astronauts)
+        MissonView(mission: missions[1],astronauts: astronauts)
     }
 }
