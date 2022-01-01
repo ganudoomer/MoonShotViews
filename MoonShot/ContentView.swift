@@ -16,12 +16,18 @@ struct ContentView: View {
             if(isMission){
             List(missions){ mission in
                 NavigationLink(destination:MissonView(mission: mission,astronauts: astronauts)){
-                    Image(mission.image).resizable().scaledToFit().frame(width: 44, height: 44)
-                    VStack(alignment:.leading){
-                        Text(mission.displayName).font(.headline)
-                        Text(mission.formattedLaunchDate)
-                    }
-                }.navigationBarTitle("Moonshot").navigationBarItems(trailing:Button(action: {
+                    Group{
+                        Image(mission.image).resizable().scaledToFit().frame(width: 44, height: 44)
+                        VStack(alignment:.leading){
+                            Text(mission.displayName).font(.headline)
+                            Text(mission.formattedLaunchDate)
+                        }
+                    }.accessibilityElement(children: .ignore)
+                        .accessibilityLabel("\(mission.displayName)")
+                        .accessibilityHint("\(mission.formattedLaunchDate)")
+                  
+                }
+                .navigationBarTitle("Moonshot").navigationBarItems(trailing:Button(action: {
                     withAnimation(.interpolatingSpring(stiffness: 5, damping: 1)){
                         isMission.toggle()
                     }
